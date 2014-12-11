@@ -1,7 +1,8 @@
 <?
+namespace classes;
+
 class QueryResult
 {
-
     private $_results = array();
 
     public function __construct() {}
