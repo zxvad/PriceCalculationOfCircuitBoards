@@ -21,8 +21,6 @@ $(function () {
                     $("#del").button("enable");
                 }
 	});
-        
-	//input и password jquery ui стиль кнопок
 	$("input:text, input:password").button(); 
 	$("#menu").menubar({
 		autoExpand: true,
