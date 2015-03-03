@@ -1,0 +1,36 @@
+{
+    "name": "noffside",
+    "description": "MarketPlace Noffside",
+    "keywords": ["yii2", "rest", "application template", "api"],
+    "homepage": "http://git.fastdev.se/never-offside/market-place",
+    "type": "project",
+    "license": "BSD-4-Clause",
+    "support": {
+        "issues": "http://git.fastdev.se/never-offside/market-place/issues",
+        "source": "http://git.fastdev.se/never-offside/market-place"
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.4.0",
+        "yiisoft/yii2": "*",
+        "fxp/composer-asset-plugin": "1.0.*@dev"
+    },
+    "extra": {
+        "asset-installer-paths": {
+            "npm-asset-library": "vendor/npm",
+            "bower-asset-library": "vendor/bower"
+        }
+    },
+    "require-dev": {
+        "yiisoft/yii2-codeception": "*",
+        "yiisoft/yii2-debug": "*",
+        "yiisoft/yii2-gii": "*",
+        "yiisoft/yii2-faker": "*",
+        "yiisoft/yii2-bootstrap": "*",
+        "imagine/imagine": "~0.5.0",
+        "yiisoft/yii2-swiftmailer": "*"
+    },
+    "config": {
+        "process-timeout": 1800
+    }
+}

@@ -1,0 +1,1 @@
+{"virtualbox":{"/var/www":{"create":true,"guestpath":"/var/www","hostpath":"C:/www","disabled":false},"/vagrant":{"guestpath":"/vagrant","hostpath":"C:/www/noffside/vagrant","disabled":false},"/tmp/vagrant-puppet-3/manifests":{"owner":"root","guestpath":"/tmp/vagrant-puppet-3/manifests","hostpath":"C:/www/noffside/vagrant/manifests","disabled":false}}}
