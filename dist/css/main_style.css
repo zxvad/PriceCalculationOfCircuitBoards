@@ -1,0 +1,100 @@
+body {
+    background: url("/tpp/ui/css/pattern_26.gif");
+    font-size: 85%;
+}
+.ui-toolbar {
+    padding:4px;
+}
+.fg-button {
+    padding-left:10px;
+    padding-right:10px;
+}
+.ui-menu:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+.ui-menu .ui-menu-item {
+    display: inline-block;
+    float: left;
+    margin: 0;
+    padding: 0;
+    width: auto;
+}
+.toolbar {
+    padding: 4px;
+    display: inline-block;
+}
+*+html toolbar {
+    display: inline;
+    margin:10px;
+}
+label, input {
+    display:block;
+}
+input.text {
+    margin-bottom:8px;
+    width:95%;
+    padding: .4em;
+}
+select {
+    margin-bottom:8px;
+}
+.add-panel-head {
+    padding:2px;
+}
+.add-panel-content {
+    text-align:left;
+}
+#closeAdd {
+    float:right;
+    width:auto;
+    padding:2px;
+    text-align:center;
+
+}
+.ui-widget-content {
+    padding:10px;
+}
+.exit-link {
+    float:right;
+}
+.start-link {
+    display:block;
+    color:black;
+    font-size:20px;
+    text-decoration:none;
+    margin:10px;
+    display:block;
+}
+.menulink {
+    white-space:nowrap;
+    display:block !important; width:400px !important;
+}
+.validateTips {
+    border: 1px solid transparent;
+    padding: 0.3em;
+}
+.tips-icon {
+    float: left;
+    margin: 0 7px 20px 0;
+}
+.row_selected  td.sorting_1, .row_selected  td.sorting_2, .row_selected  td.sorting_3{
+    background-color:#bfcada !important;
+}
+.row_selected {
+    background-color:#bfcada !important;
+}
+button {
+    margin:2px;
+}
+.inline-fields label,.inline-fields input {
+    display:inline-block;
+
+}
+.full-width {
+    width:95%;
+}
