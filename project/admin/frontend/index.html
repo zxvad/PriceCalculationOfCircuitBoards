@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html ng-app="PriceCalculationOfCircuitBoards">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <base href="/admin/">
+    <meta charset="utf-8">
+    <meta name="fragment" content="!"/>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>Расчет стоимости печатных плат</title>
+
+</head>
+<body class="ng-cloak" style="overflow-y: scroll">
+<div class="wrapper">
+    <div ng-controller="SiteAuthController as site" >
+    <div class="bg-info top-nav">
+        <div class="container clearfix">
+            <div class="dropdown pull-right">
+                <ul class="list-inline navbar-nooffset">
+                    </li><li ng-hide="getLogged()">
+                        <a href="login">Войти</a>
+                    </li>
+                    <li ng-show="getLogged()">
+                        <a href="#" ng-click="logOut()">Выйти</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+        <div ng-controller="NavigationController as nav">
+            <div class="navbar navbar-default navbar-nooffset navbar-main" role="navigation" bs-navbar>
+                <div class="container">
+                    <div ng-model="navigationItems.activePanel" bs-collapse>
+                        <div>
+                            <ul class="nav navbar-nav" >
+                                <li bs-collapse-toggle if-has-access='{{item.accessLevel}}' href='#'
+                                    ng-class="menuClassPanel({{item.activePanel}})"
+                                    ng-repeat="item in navigationItems">
+                                    <a href='{{item.href}}'>
+                                        {{ item.title | translate}}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="navbar navbar-default navbar-collapse subnav" role="navigation" bs-navbar>
+                <div class="container">
+                    <div ng-model="navigationItems.activePanel" bs-collapse>
+                        <ul class="nav bs-collapse-target navbar-nav" bs-collapse-target
+                            ng-repeat="item in navigationItems">
+                            <li ng-repeat="subitem in item.items" if-has-access='{{subitem.accessLevel}}'
+                                ng-class="menuClassSubPanel('{{subitem.href}}')">
+                                <a href="{{subitem.href}}">{{subitem.title |translate}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-view>
+    </div>
+</div>
+
+<!--script src="client/dist/js/built.min.js"></script-->
+<script src="vendor/jquery/dist/jquery.min.js"></script>
+<script src="vendor/angular/angular.js"></script>
+<script src="vendor/angular-i18n/angular-locale_se.js"></script>
+<script src="vendor/angular-route/angular-route.min.js"></script>
+<script src="vendor/angular-sanitize/angular-sanitize.js"></script>
+<script src="vendor/angular-animate/angular-animate.min.js"></script>
+<script src="vendor/angular-strap/dist/angular-strap.js"></script>
+<script src="vendor/angular-bootstrap/ui-bootstrap.js"></script>
+<script src="vendor/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="vendor/angular-strap/dist/angular-strap.tpl.min.js"></script>
+<script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="src/tmpl/ngTableFilters.js"></script>
+
+<script src="src/app.js"></script>
+<script src="src/site/controllers/SiteCtrl.js"></script>
+<script src="src/site/controllers/NavCtrl.js"></script>
+<script src="src/services/authService.js"></script>
+<script src="src/services/restService.js"></script>
+
+</body>
+</html>
