@@ -1,0 +1,28 @@
+{
+    "name": "PriceCalculationOfCircuitBoards",
+    "description": "PriceCalculationOfCircuitBoards",
+    "keywords": ["PriceCalculationOfCircuitBoards"],
+    "type": "project",
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.4.0",
+        "yiisoft/yii2": "*",
+        "fxp/composer-asset-plugin": "1.0.*@dev",
+        "yiisoft/yii2-bootstrap": "*"
+    },
+    "extra": {
+        "asset-installer-paths": {
+            "npm-asset-library": "vendor/npm",
+            "bower-asset-library": "vendor/bower"
+        }
+    },
+    "require-dev": {
+        "yiisoft/yii2-codeception": "*",
+        "yiisoft/yii2-debug": "*",
+        "yiisoft/yii2-gii": "*",
+        "yiisoft/yii2-faker": "*"
+    },
+    "config": {
+        "process-timeout": 1800
+    }
+}
