@@ -1,0 +1,24 @@
+@import "custom-bootstrap/custom-variables.less";
+@import "../../vendor/bootstrap/less/mixins.less";
+@import "styles";
+
+.cont-wrap {
+  .make-row();
+  .clearfix();
+}
+.half-col {
+  .make-sm-column(6);
+}
+
+.cols-wrap {
+  &:extend(.row);
+
+  &>* {
+    font-size: 14px;
+    letter-spacing: normal;
+  }
+}
+
+.cols-item {
+  .make-sm-column(4);
+}

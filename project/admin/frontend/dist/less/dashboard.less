@@ -1,0 +1,40 @@
+@import "custom-bootstrap/custom-variables.less";
+@import "../../vendor/bootstrap/less/mixins.less";
+@import "styles";
+@import "../../vendor/bootstrap/less/wells.less";
+
+.dashboard {
+  background: #fff;
+  border-radius: 4px;
+  padding: 20px 0;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  .clearfix();
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.dashboard-item-wrap {
+  .make-xs-column(3);
+  float: none;
+  display: table-cell;
+
+  &+.dashboard-item-wrap {
+    border-left: 1px solid @separate-border-color;
+  }
+}
+
+.dashboard-item {
+  position: relative;
+  background: @panel-bg;
+  padding: 10px 15px;
+  line-height: 1.2em;
+
+  .accented-text {
+    margin-bottom: 20px;
+    display: block;
+    color: @dashboard-accented-text;
+    line-height: 1.2em;
+  }
+}

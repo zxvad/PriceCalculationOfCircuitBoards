@@ -1,0 +1,29 @@
+@import "custom-bootstrap/custom-variables.less";
+@import "../../vendor/bootstrap/less/mixins.less";
+@import "styles";
+
+.alert {
+  .clearfix();
+}
+
+.alert-main {
+  background: @green-main;
+  color: #fff;
+  border: none;
+  text-shadow: none;
+  padding: 30px 40px;
+}
+
+.alert-left {
+  .make-sm-column(12);
+  .make-md-column(9);
+}
+
+.alert-right {
+  .make-sm-column(12);
+  .make-md-column(3);
+
+  @media (min-width: @screen-md-min) {
+      text-align: right;
+  }
+}

@@ -1,0 +1,106 @@
+.table {
+  background: #fff;
+  font-size: 14px;
+
+  &>tbody, &>thead {
+    &>tr{
+      &>th {
+        background: none;
+        border-top: 0;
+        border-bottom: 1px;
+        
+        .btn {
+          text-transform: none;
+          font-family: @font-family-main;
+          font-weight: normal;
+        }
+      }
+      &>th, &>td {
+        border-bottom: 1px solid #ddd;
+        border-top: none;
+
+        &.panel-bottom {
+          padding-top: 20px;
+          padding-bottom: 10px;
+          border-bottom: none;
+        }
+      }
+    }
+  }
+
+  .btn {
+    margin-bottom: 2px;
+  }
+
+  .text-right {
+    padding-right: 0;
+  }
+}
+
+th {
+  text-align: left !important;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.ng-table th.sortable.sort-desc, .ng-table th.sortable.sort-asc {
+  background: none;
+  text-shadow: none;
+}
+
+.ng-table {
+  th.sortable {
+    div {
+      &:before {
+        display: none;
+      }
+
+      &:after {
+        content: '\2039\203A';
+        border: none;
+        font-size: 16px;
+        height: 23px;
+        right: auto;
+        top: auto;
+        bottom: 0;
+        .rotate(90deg);
+        margin: 0 0 0 16px;
+      }
+    }
+
+    &.sort-asc, &.sort-desc {
+      div {
+        &:after {
+          visibility: visible;
+          top: auto;
+          bottom: 0;
+          margin-top: 0;
+          border: none;
+          margin-left: 18px;
+        }
+
+        &:hover {
+          &:after {
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    &.sort-asc {
+      div {
+        &:after {
+          content: '\2039';
+        }
+      }
+    }
+
+    &.sort-desc {
+      div {
+        &:after {
+          content: '\203A';
+        }
+      }
+    }
+  }
+}
