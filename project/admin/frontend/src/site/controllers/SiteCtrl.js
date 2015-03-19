@@ -4,9 +4,7 @@ app.controller('SiteAuthController', ['$scope', '$location', 'userService', 'aut
         $scope.getLogged = function () {
             return authService.isLoggedIn();
         };
-        $scope.accessLevels = ACCESS_LEVELS;
-
-        $scope.accountUrl = userService.getPartnerId() !== null ? 'contact-account' : 'account';
+        $scope.accessLevel = ACCESS_LEVELS;
 
         $scope.logIn = function (username, password) {
             username = typeof username !== 'undefined' ? username : null;
@@ -15,11 +13,7 @@ app.controller('SiteAuthController', ['$scope', '$location', 'userService', 'aut
             authService.signIn(username, password)
                 .then(function () {
                     $scope.loginError = false;
-                    if (authService.getRole() == 'partnercontact') {
-                        $location.path('partners/' + userService.getPartnerId() + '/info'); // todo: check
-                    } else {
-                        $location.path('/');
-                    }
+                    $location.path('/');
                 })
                 .catch(function (response) {
                     $scope.form['username'].$setValidity('required', true);

@@ -1,7 +1,7 @@
 'use strict';
 
-app.factory('authService', ['$http', 'rest', '$window', '$q',
-    function ($http, rest, $window, $q) {
+app.factory('authService', ['$http', 'rest', '$window', '$q', 'ACCESS_LEVELS',
+    function ($http, rest, $window, $q, ACCESS_LEVELS) {
         var signIn = function (username, password) {
             var deferred = $q.defer();
             $http.post(rest.baseUrl + 'v1/site/login', {username: username, password: password}) // todo: remove rest.baseUrl from here
@@ -9,7 +9,8 @@ app.factory('authService', ['$http', 'rest', '$window', '$q',
                     if (data.username) {
                         _auth({
                             token: data.token,
-                            username: data.username
+                            username: data.username,
+                            role: data.role
                         });
 
                         $window.localStorage.user = JSON.stringify({
@@ -40,6 +41,23 @@ app.factory('authService', ['$http', 'rest', '$window', '$q',
             return _auth() !== null ? _auth().token : null;
         };
 
+        var getRole = function () {
+            return _auth() !== null ? _auth().role : null;
+        };
+
+        var authorize = function (accessLevel) { // todo: what's it?
+            var role = getRole();
+            return accessLevel.indexOf(role) > -1;
+        };
+
+        var hasAccess = function(accessLevelName) {
+            var role = getRole() || 'USER';
+            if (ACCESS_LEVELS[accessLevelName]) {
+                return ACCESS_LEVELS[accessLevelName].indexOf(role) > -1;
+            }
+            return false;
+        };
+
         var isLoggedIn = function () {
             return _auth() !== null;
         };
@@ -56,7 +74,10 @@ app.factory('authService', ['$http', 'rest', '$window', '$q',
             signIn: signIn,
             getToken: getToken,
             signOut: signOut,
-            isLoggedIn: isLoggedIn
+            isLoggedIn: isLoggedIn,
+            getRole: getRole,
+            hasAccess: hasAccess,
+            authorize: authorize
         }
     }]);
 
