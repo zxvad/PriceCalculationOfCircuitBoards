@@ -42,6 +42,11 @@ return [
             'enablePrettyUrl' => true,
             'enableStrictParsing' => true,
             'showScriptName' => false,
+            'rules' => [
+                'OPTIONS admin/api/v1/site/login' => 'v1/site/login',
+                'POST admin/api/v1/site/login' => 'v1/site/login',
+
+            ],
         ],
     ],
     'params' => $params,
