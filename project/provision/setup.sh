@@ -131,14 +131,6 @@ bower install --config.interactive=false -allow
 bower update --config.interactive=false
 grunt built
 
-cd $APP_PATH/club
-# --no-bin-links is required for windows,
-# because creating symlinks to binaries will cause errors on Windows
-npm install --no-bin-links
-bower install --config.interactive=false
-bower update --config.interactive=false
-grunt build
-
 # Init web app
 echo "----------Initializing web app----------"
 cd $APP_PATH

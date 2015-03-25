@@ -18,7 +18,7 @@ return [
     ],
     'components' => [
         'user' => [
-            'identityClass' => 'common\models\User',
+            'identityClass' => 'api\versions\v1\models\User',
             'enableSession' => false,
             'enableAutoLogin' => false,
             'loginUrl' => null
@@ -43,9 +43,15 @@ return [
             'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
+                ['class' => 'yii\rest\UrlRule',
+                    'prefix' => 'admin/api',
+                    'controller' => [
+                        'v1/formula',
+                    ]
+                ],
                 'OPTIONS admin/api/v1/site/login' => 'v1/site/login',
                 'POST admin/api/v1/site/login' => 'v1/site/login',
-
+                'POST admin/api/v1/calculation/make' => 'v1/calculation/make'
             ],
         ],
     ],

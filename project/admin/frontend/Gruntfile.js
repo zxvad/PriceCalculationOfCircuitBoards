@@ -1,23 +1,16 @@
 module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        less: {
+            dist:{
+                files: {
+                    "dist/css/style.css": "dist/less/controller.less"
+                }
+            }
+        },
         concat: {
             options: {
                 separator: ''
-            },
-            js: {
-                src: [
-                    'vendor/angular/angular.js',
-                    'vendor/angular-i18n/angular-locale_ru.js',
-                    'vendor/angular-route/angular-route.js',
-                    'vendor/angular-sanitize/angular-sanitize.js',
-                    'vendor/angular-animate/angular-animate.js',
-                    'vendor/angular-strap/dist/angular-strap.js',
-                    'vendor/angular-strap/dist/angular-strap.tpl.js',
-                    'vendor/angular-bootstrap/ui-bootstrap.min.js',
-                    'src/app.js'
-                ],
-                dest: 'dist/js/built.js'
             },
             css: {
                 src: [
@@ -39,13 +32,25 @@ module.exports = function(grunt) {
                 src: 'dist/css/built.css',
                 dest: 'dist/css/built.min.css'
             }
+        },
+        watch: {
+            less: {
+                files: [
+                    'dist/less/custom-bootstrap/*.less',
+                    'dist/less/*.less'
+                ],
+                tasks: ['less', 'concat', 'cssmin']
+            }
         }
     });
 
+    grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-ngmin');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-contrib-watch');
 
-    grunt.registerTask('built', [ 'concat', 'ngmin', 'cssmin']);
+    grunt.registerTask('built', ['less', 'concat', 'ngmin', 'cssmin']);
 
 };
