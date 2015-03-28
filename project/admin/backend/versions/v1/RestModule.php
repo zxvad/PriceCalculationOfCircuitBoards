@@ -9,6 +9,6 @@ class RestModule extends Module
     {
         parent::init();
 
-        \Yii::$app->user->identityClass = 'common\models\User';
+        \Yii::$app->user->identityClass = 'api\versions\v1\models\User';
     }
 }
