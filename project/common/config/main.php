@@ -27,7 +27,7 @@ return [
         ],
         'user' => [
             'class' => 'yii\web\User',
-            'identityClass' => 'common\models\User'
+            'identityClass' => 'api\versions\v1\models\User'
         ]
     ]
 ];
