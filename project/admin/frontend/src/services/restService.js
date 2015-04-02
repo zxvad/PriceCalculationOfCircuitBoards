@@ -33,6 +33,12 @@ app
             },
             deleteModelById: function (id, path) {
                 return $http.delete(this.baseUrl + path + "/" + id);
+            },
+            getModelByIdWithPath: function (id, path) {
+                return $http.get(this.baseUrl + path + "/" + id);
+            },
+            putModelWithPath: function (model, path) {
+                return $http.put(this.baseUrl + path + "/" + model.id, model);
             }
         };
 

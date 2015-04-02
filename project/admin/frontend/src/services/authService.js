@@ -4,7 +4,7 @@ app.factory('authService', ['$http', 'rest', '$window', '$q', 'ACCESS_LEVELS',
     function ($http, rest, $window, $q, ACCESS_LEVELS) {
         var signIn = function (username, password) {
             var deferred = $q.defer();
-            $http.post(rest.baseUrl + 'v1/site/login', {username: username, password: password}) // todo: remove rest.baseUrl from here
+            $http.post(rest.baseUrl + 'v1/site/login', {username: username, password: password})
                 .success(function (data) {
                     if (data.username) {
                         _auth({
@@ -45,7 +45,7 @@ app.factory('authService', ['$http', 'rest', '$window', '$q', 'ACCESS_LEVELS',
             return _auth() !== null ? _auth().role : null;
         };
 
-        var authorize = function (accessLevel) { // todo: what's it?
+        var authorize = function (accessLevel) {
             var role = getRole();
             return accessLevel.indexOf(role) > -1;
         };
@@ -100,16 +100,12 @@ app
     .factory('tokenInterceptor', ['$q', '$window', '$location', '$injector', function ($q, $window, $location, $injector) {
         return {
             request: function (config) {
-                var restBaseUrl = $injector.get('rest').baseUrl; // todo: remove from here?
+                var restBaseUrl = $injector.get('rest').baseUrl;
 
                 var token = $window.localStorage.auth ? JSON.parse($window.localStorage.auth).token : null;
 
                 if (token && config.url.indexOf(restBaseUrl) > -1) {
-                    if (angular.isUndefined(config.params) || config.params === null) {
-                        config.params = {'access-token': token};
-                    } else {
-                        config.params['access-token'] = token;
-                    }
+                    config.headers['Authorization'] = 'Bearer ' + token;
                 }
                 return config;
             },
@@ -122,9 +118,25 @@ app
             },
 
             responseError: function (rejection) {
-                delete $window.localStorage.auth;
-                delete $window.localStorage.user;
-                $location.path('/login');
+                switch (rejection.status) {
+                    case 401:
+                        delete $window.localStorage.auth;
+                        delete $window.localStorage.user;
+                        $location.path('/login');
+                        break;
+                    case 404:
+                        $location.path('/404');
+                        break;
+                    case 403:
+                        $location.path('/403');
+                        break;
+                    case 500:
+                        $location.path('/500');
+                        break;
+                    default:
+                        return $q.reject(rejection);
+                        break;
+                }
                 return $q.reject(rejection);
             }
         };

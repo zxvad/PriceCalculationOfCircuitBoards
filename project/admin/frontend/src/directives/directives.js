@@ -8,7 +8,6 @@ app.directive('ifHasAccess', ['$rootScope', 'authService', function ($rootScope,
                 function () {
                     return authService.getRole();
                 }, function () {
-                    console.log(authService.hasAccess(attrs.ifHasAccess));
                     if (!authService.hasAccess(attrs.ifHasAccess)) {
                         element.css('display', 'none');
                     } else {
