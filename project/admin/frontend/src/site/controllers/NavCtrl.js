@@ -12,21 +12,15 @@ app
             $scope.navigationItems = [
                     {
                     title: "Расчет",
-                    href: "calc",
-                    accessLevel: $scope.accessLevel.ROLE_ADMIN,
+                    href: "calculation/make",
+                    accessLevel: 'ROLE_USER',
                     activePanel:0
                 },
                 {
-                    title: "Изменение",
-                    href: "edit",
-                    accessLevel: $scope.accessLevel.ROLE_ADMIN,
+                    title: "Формулы",
+                    href: "formulas",
+                    accessLevel: 'ROLE_ADMIN',
                     activePanel:1
-                },
-                {
-                    title: "Помощь",
-                    href: "help",
-                    accessLevel: $scope.accessLevel.ROLE_ADMIN,
-                    activePanel:2
                 }
             ];
             var errorPageRoutes = [

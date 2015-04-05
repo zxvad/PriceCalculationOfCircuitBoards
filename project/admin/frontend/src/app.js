@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('PriceCalculationOfCircuitBoards', ['ngRoute', 'ngAnimate', 'ngSanitize', 'mgcrea.ngStrap', 'ui.bootstrap']);
+var app = angular.module('PriceCalculationOfCircuitBoards', ['ngRoute', 'ngAnimate', 'ngSanitize', 'mgcrea.ngStrap', 'ui.bootstrap', 'ngTable']);
 
 app.constant('ACCESS_LEVELS', {
     ROLE_ADMIN: [
@@ -18,7 +18,7 @@ app.config(['$locationProvider', '$routeProvider', '$httpProvider', '$collapsePr
     angular.extend($collapseProvider.defaults, {
         disallowToggle: true
     });
-
+    var access = ACCESS_LEVELS;
     var modulesPath = 'src';
     $routeProvider
         .when('/', {
@@ -28,6 +28,14 @@ app.config(['$locationProvider', '$routeProvider', '$httpProvider', '$collapsePr
         .when ('/login', {
             templateUrl: modulesPath + '/site/views/login.html',
             controller: 'SiteAuthController'
+        })
+        .when ('/calculation/make', {
+            templateUrl: modulesPath + '/calc/views/make.html',
+            controller: 'CalculationMakeController'
+        })
+        .when ('/formulas', {
+            templateUrl: modulesPath + '/formula/views/index.html',
+            controller: 'FormulaIndexController'
         })
         .when ('/404', {
             templateUrl: modulesPath + '/site/views/errors/404.html',
