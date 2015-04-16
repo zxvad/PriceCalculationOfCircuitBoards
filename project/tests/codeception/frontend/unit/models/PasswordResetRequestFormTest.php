@@ -6,7 +6,7 @@ use Yii;
 use tests\codeception\frontend\unit\DbTestCase;
 use frontend\models\PasswordResetRequestForm;
 use tests\codeception\common\fixtures\UserFixture;
-use common\models\User;
+use api\versions\v1\models\User;
 use Codeception\Specify;
 
 class PasswordResetRequestFormTest extends DbTestCase
