@@ -1,0 +1,130 @@
+@import "custom-bootstrap/custom-variables.less";
+@import "../../vendor/bootstrap/less/mixins.less";
+.form-horizontal {
+  padding: 15px;
+  background: #fff;
+  margin-bottom: 20px;
+}
+
+label {
+  font-family: @font-family-main-bold;
+  font-weight: normal;
+}
+
+.form-control {
+  &:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+}
+
+tags-input .tags.focused {
+  border: 1px solid #ddd;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.form-label, .form-field {
+  .make-sm-column(4);
+}
+
+.form-field {
+  .make-sm-column-offset(4);
+  float: none;
+}
+.form-label {
+  .control-label {
+    width: 100%;
+  }
+}
+
+.post {
+  .form-group {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.form-aside {
+  &:extend(.form-field);
+  text-align: right;
+}
+
+.control-label {
+  &:extend(.nogutter-left);
+  &:extend(.nogutter-right);
+  font-size: 14px;
+  position: relative;
+}
+
+.errors {
+  color: @state-danger-text;
+  font-size: 80%;
+  font-style: italic;
+  line-height: 1.5em;
+}
+
+.required {
+  &:after {
+    content: '*';
+    position: absolute;
+    top: auto;
+    right: -7px;
+  }
+}
+
+.control-group {
+  overflow: hidden;
+}
+
+.controls, .control {
+  margin-bottom: 15px;
+}
+
+.controls {
+  p.form-control {
+    &:extend(.disable-field);
+  }
+
+  .control-label {
+    margin-bottom: 10px;
+  }
+}
+
+.text-field {
+  padding-top: 7px;
+}
+
+.disable-field {
+  background: @disable-field;
+  cursor: not-allowed;
+}
+
+textarea {
+  resize: none;
+
+  &.form-control {
+    height: 200px;
+  }
+}
+
+p.input-group {
+  margin-bottom: 0;
+}
+
+.inline-group {
+  display: inline-block;
+  max-width: 200px;
+  margin-right: 10px;
+  vertical-align: bottom;
+
+  .controls {
+    margin-bottom: 0;
+  }
+
+  .btn {
+    margin-top: 10px;
+  }
+}
+
+

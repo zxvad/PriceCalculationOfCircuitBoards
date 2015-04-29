@@ -4,9 +4,7 @@ app.controller('SiteAuthController', ['$scope', '$location', 'userService', 'aut
         $scope.getLogged = function () {
             return authService.isLoggedIn();
         };
-        $scope.accessLevels = ACCESS_LEVELS;
-
-        $scope.accountUrl = userService.getPartnerId() !== null ? 'contact-account' : 'account';
+        $scope.accessLevel = ACCESS_LEVELS;
 
         $scope.logIn = function (username, password) {
             username = typeof username !== 'undefined' ? username : null;
@@ -15,11 +13,7 @@ app.controller('SiteAuthController', ['$scope', '$location', 'userService', 'aut
             authService.signIn(username, password)
                 .then(function () {
                     $scope.loginError = false;
-                    if (authService.getRole() == 'partnercontact') {
-                        $location.path('partners/' + userService.getPartnerId() + '/info'); // todo: check
-                    } else {
-                        $location.path('/');
-                    }
+                    $location.path('/');
                 })
                 .catch(function (response) {
                     $scope.form['username'].$setValidity('required', true);
@@ -39,63 +33,3 @@ app.controller('SiteAuthController', ['$scope', '$location', 'userService', 'aut
                 });
         }
     }]);
-
-app
-    .controller('SiteAccController', ['$routeParams', '$scope', 'rest', '$location',
-        function ($routeParams, $scope, rest, $location) {
-            rest.path = "v1/site/activate";
-            $scope.activated = false;
-            rest.postModel({user_id:$routeParams.user_id, token:$routeParams.token}).success(function (data) {
-                if (data.success == false)
-                    $location.path("404");
-            }).error(function (error) {
-                console.log(error);
-            });
-            $scope.user = {
-                password: "",
-                confirmPassword: "",
-                id: $routeParams.user_id
-            };
-            $scope.activate = function(user) {
-                $scope.errors = {};
-                rest.path = "v1/site/setpassword";
-                rest.postModelWithId(user).success(function (data) {
-                   if (data.success == true) {
-                       $scope.activated = true;
-                   }
-                }).error(function (response) {
-                    angular.forEach(response, function (key, value) {
-                        if ($scope.form[key['field']]!==undefined){
-                            $scope.form[key['field']].$dirty = true;
-                            $scope.form[key['field']].$setValidity('server', false);
-                            $scope.errors[key['field']] = key['message'];
-                        }
-                    });
-                });
-            };
-        }]);
-
-app
-    .controller('SiteForgotPswdController', ['$scope', 'rest',
-        function ($scope, rest) {
-            $scope.user = {
-                username:""
-            };
-            $scope.reset = false;
-            $scope.resetPassword = function(user) {
-                rest.path = "v1/site/forgotpswd";
-                $scope.errors = {};
-                rest.postModel(user).success(function (data) {
-                    $scope.reset = true;
-                }).error(function (response) {
-                    angular.forEach(response, function (key, value) {
-                        if ($scope.form[key['field']]!==undefined){
-                            $scope.form[key['field']].$dirty = true;
-                            $scope.form[key['field']].$setValidity('server', false);
-                            $scope.errors[key['field']] = key['message'];
-                        }
-                    });
-                });
-            };
-        }]);
-

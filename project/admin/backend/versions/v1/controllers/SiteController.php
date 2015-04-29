@@ -1,14 +1,14 @@
 <?php
 namespace api\versions\v1\controllers;
 
-use common\models\LoginForm;
-use common\models\User;
+use api\versions\v1\models\LoginForm;
+use api\versions\v1\models\User;
 use yii\rest\ActiveController;
 use yii\filters\AccessControl;
 
 class SiteController extends ActiveController
 {
-    public $modelClass = 'common\models\User';
+    public $modelClass = 'api\versions\v1\models\User';
 
     public function behaviors()
     {
@@ -41,7 +41,8 @@ class SiteController extends ActiveController
             $userModel = User::findByUsername($model->username);
             $token['username'] = $userModel->username;
             $userInfo = [
-                'username'=>$userModel->username
+                'username' => $userModel->username,
+                'role' => $userModel->role
             ];
             $userInfo['token'] = $jwt::encode($token, $jwt->secret_key);
             echo json_encode($userInfo);

@@ -1,0 +1,137 @@
+<div class="container">
+    <form class="form-horizontal clearfix" role="form" name="form">
+        <div class="underlined">
+            <div class="cols-wrap">
+                <div class="cols-item">
+                        <div class="controls">
+                            <label class="control-label" for="type_pl">Тип печатной платы:</label>
+                            <div class="controls">
+                                <select id="type_pl" name="type_pl" ng-model="calc.type_pl" class="form-control" server-error ng-init="calc.type_pl=1">
+                                    <option value="1">Односторонние</option>
+                                    <option value="2">Двухсторонние</option>
+                                </select>
+                                <span class="errors" ng-show="form.type_pl.$dirty && form.type_pl.$invalid">
+                                    <span ng-show="form.type_pl.$error.server">{{errors.type_pl}}</span>
+                                </span>
+                            </div>
+                        </div>
+                    <div class="controls">
+                        <label class="control-label" for="klt">Класс точности:</label>
+                        <div class="controls">
+                            <select id="klt" name="klt" ng-model="calc.klt" class="form-control" server-error ng-init="calc.klt=3">
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                                <span class="errors" ng-show="form.klt.$dirty && form.klt.$invalid">
+                                    <span ng-show="form.klt.$error.server">{{errors.klt}}</span>
+                                </span>
+                        </div>
+                    </div>
+                    <div class="controls">
+                        <label class="control-label" for="kol_ojpl">Количество ожидаемых к заказу плат:</label>
+                        <div class="controls">
+                            <input id="kol_ojpl" name="kol_ojpl" type="text" maxlength="4" class="form-control" ng-model="calc.kol_ojpl" server-error>
+                            <span class="errors" ng-show="form.kol_ojpl.$dirty && form.kol_ojpl.$invalid">
+                                <span ng-show="form.kol_ojpl.$error.server">{{errors.kol_ojpl}}</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="cols-item">
+                    <div class="controls">
+                        <label class="control-label" for="dlpl">Длина(мм):</label>
+                        <div class="controls">
+                            <input id="dlpl" type="text" name="dlpl" maxlength="4" ng-model="calc.dlpl" class="form-control" server-error>
+                            <span class="errors" ng-show="form.dlpl.$dirty && form.dlpl.$invalid">
+                                <span ng-show="form.dlpl.$error.server">{{errors.dlpl}}</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="controls">
+                        <label class="control-label" for="shpl">Ширина(мм):</label>
+                        <div class="controls">
+                            <input id="shpl" type="text" name="shpl" maxlength="4" ng-model="calc.shpl" class="form-control" server-error>
+                            <span class="errors" ng-show="form.shpl.$dirty && form.shpl.$invalid">
+                                <span ng-show="form.shpl.$error.server">{{errors.shpl}}</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="controls">
+                        <label class="control-label" for="hpl">Толщина(мм):</label>
+                        <div class="controls">
+                            <select id="hpl" ng-model="calc.hpl" name="hpl" class="form-control" server-error ng-init="calc.hpl=0.1">
+                                <option value="0.1" selected>0.1</option>
+                                <option value="0.2">0.2</option>
+                                <option value="0.51">0.51</option>
+                                <option value="1">1</option>
+                                <option value="1.5">1.5</option>
+                                <option value="2">2</option>
+                            </select>
+                            <span class="errors" ng-show="form.hpl.$dirty && form.hpl.$invalid">
+                                <span ng-show="form.hpl.$error.server">{{errors.hpl}}</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="cols-item">
+                    <div class="controls">
+                        <label class="control-label" for="mask">Защитная маска:</label>
+                        <div class="controls">
+                            <select ng-model="calc.mask" id="mask" name="mask" class="form-control" server-error ng-init="calc.mask=0">
+                                <option value="0">Нет</option>
+                                <option value="1">С одной стороны</option>
+                                <option value="2">С двух сторон</option>
+                            </select>
+                            <span class="errors" ng-show="form.mask.$dirty && form.mask.$invalid">
+                                <span ng-show="form.mask.$error.server">{{errors.mask}}</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="controls">
+                        <label class="control-label" for="mark">Маркировка:</label>
+                        <div class="controls">
+                            <select id="mark" name="mark" class="form-control" server-error ng-init="calc.mark=0">
+                                <option value="0">Нет</option>
+                                <option value="1">С одной стороны</option>
+                                <option value="2">С двух сторон</option>
+                            </select>
+                            <span class="errors" ng-show="form.mark.$dirty && form.mark.$invalid">
+                                <span ng-show="form.mark.$error.server">{{errors.mark}}</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="controls">
+                        <label class="control-label" for="type_pokr">Вид покрытия:</label>
+                        <div class="controls">
+                            <select id="type_pokr" name="type_pokr" class="form-control" server-error ng-init="calc.type_pokr=1">
+                                <option value="1">ГорПос-61</option>
+                                <option value="2">Олово-свинец</option>
+                                <option value="3">Иммерсионное золочение</option>
+                                <option value="4">Гальваническое золочение</option>
+                            </select>
+                            <span class="errors" ng-show="form.type_pokr.$dirty && form.type_pokr.$invalid">
+                                <span ng-show="form.type_pokr.$error.server">{{errors.type_pokr}}</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="controls">
+                        <label class="control-label" for="el">Электроконтроль:</label>
+                        <div class="controls">
+                            <select id="el" ng-model="calc.el" name="el" class="form-control" server-error ng-init="calc.el=0">
+                                <option value="0">Нет</option>
+                                <option value="1">Да</option>
+                            </select>
+                            <span class="errors" ng-show="form.el.$dirty && form.el.$invalid">
+                                <span ng-show="form.el.$error.server">{{errors.el}}</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="submit-btns raw">
+            <button type="submit" ng-click="makeCalc()" class="btn btn-primary">Расчитать</button>
+        </div>
+    </form>
+</div>

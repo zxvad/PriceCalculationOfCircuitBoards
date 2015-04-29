@@ -27,10 +27,13 @@ return [
         'path' => 'dev',
         'setWritable' => [
             'admin/backend/runtime',
-            'console/runtime'
+            'console/runtime',
+            'vendor/bin'
         ],
         'setExecutable' => [
             'yii',
+            'codecept',
+            'vendor/bin/codecept'
         ]
     ]
 ];

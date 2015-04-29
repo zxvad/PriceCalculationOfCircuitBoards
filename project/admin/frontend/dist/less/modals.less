@@ -1,0 +1,50 @@
+@import "custom-bootstrap/custom-variables.less";
+@import "../../vendor/bootstrap/less/mixins.less";
+
+.modal-backdrop.in {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
+  opacity: .5;
+  background-color: #333;
+}
+
+.modal-content {
+  padding: 30px;
+  background: @modal-bg;
+  -webkit-box-shadow: 0 5px 30px rgba(0,0,0,.3);
+  box-shadow: 0 5px 30px rgba(0,0,0,.3);
+
+  .control-label {
+    margin-bottom: 10px;
+  }
+
+  .form-horizontal {
+    background: none;
+  }
+}
+
+.modal-body {
+  padding: 0;
+  margin-top: 20px;
+}
+
+.modal-title {
+  font-family: @font-family-main-bold;
+  font-size: 24px;
+  color: @modal-headers-color;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  line-height: 1.2em;
+}
+
+tags-input .tags .input, tags-input .tags .tag-item {
+  font-family: @font-family-main;
+  font-size: 16px;
+}

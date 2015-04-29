@@ -1,20 +1,45 @@
 'use strict';
 
-var app = angular.module('PriceCalculationOfCircuitBoards', ['ngRoute', 'ngAnimate', 'ngSanitize', 'mgcrea.ngStrap', 'ui.bootstrap']);
+var app = angular.module('PriceCalculationOfCircuitBoards', ['ngRoute', 'ngAnimate', 'ngSanitize', 'mgcrea.ngStrap', 'ui.bootstrap', 'ngTable']);
 
+app.constant('ACCESS_LEVELS', {
+    ROLE_ADMIN: [
+        'ADMIN'
+    ],
+    ROLE_USER: [
+        'USER',
+        'ADMIN'
+    ]
+});
 
-app.config(['$locationProvider', '$routeProvider', '$httpProvider', '$collapseProvider',
-    function ($locationProvider, $routeProvider, $httpProvider, $collapseProvider) {
+app.config(['$locationProvider', '$routeProvider', '$httpProvider', '$collapseProvider', 'ACCESS_LEVELS',
+    function ($locationProvider, $routeProvider, $httpProvider, $collapseProvider, ACCESS_LEVELS) {
 
     angular.extend($collapseProvider.defaults, {
         disallowToggle: true
     });
-
+    var access = ACCESS_LEVELS;
     var modulesPath = 'src';
     $routeProvider
         .when('/', {
             templateUrl: modulesPath + '/site/views/index.html',
-            controller: 'SiteController'
+            controller: 'SiteAuthController'
+        })
+        .when ('/login', {
+            templateUrl: modulesPath + '/site/views/login.html',
+            controller: 'SiteAuthController'
+        })
+        .when ('/calculation/make', {
+            templateUrl: modulesPath + '/calc/views/make.html',
+            controller: 'CalculationMakeController'
+        })
+        .when ('/formulas', {
+            templateUrl: modulesPath + '/formula/views/index.html',
+            controller: 'FormulaIndexController'
+        })
+        .when ('/404', {
+            templateUrl: modulesPath + '/site/views/errors/404.html',
+            name: '404'
         })
         .otherwise({redirectTo: '/404', name: '404'});
     $locationProvider.html5Mode(true).hashPrefix('!');

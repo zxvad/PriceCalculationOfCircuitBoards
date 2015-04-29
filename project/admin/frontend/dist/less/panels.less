@@ -1,0 +1,46 @@
+.panel {
+  .clearfix();
+  border: none;
+  margin-top: 15px;
+  margin-bottom: 15px;
+
+  table {
+    margin-bottom: 0;
+  }
+}
+
+.panel-heading {
+  .clearfix();
+  font-family: @font-family-main-bold;
+  font-size: 12px;
+  background: @panel-heading-bg;
+  letter-spacing: 1;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: @gray-light;
+  padding: 15px 20px;
+
+  .btn {
+    text-transform: none;
+    font-weight: normal;
+    float: right;
+  }
+}
+
+.panel-body {
+  padding: 15px;
+  background: #fff;
+
+  &+.panel-body {
+    margin-top: 20px;
+  }
+}
+
+.panel-bottom {
+  text-align: right;
+  font-family: @font-family-main-bold;
+  font-size: 12px;
+  color: @gray-light;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}

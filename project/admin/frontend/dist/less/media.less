@@ -1,0 +1,31 @@
+@import "custom-bootstrap/custom-variables.less";
+@import "../../vendor/bootstrap/less/mixins.less";
+@import "styles";
+
+.media {
+  margin-bottom: 15px;
+}
+
+.media-body {
+  width: 100%;
+
+  @media (min-width: @screen-md-min) {
+    .media-heading {
+      display: inline-block;
+      margin-right: 10px;
+    }
+  }
+}
+
+.media-left .img-thumbnail {
+  max-width: none;
+}
+
+.media-top {
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.media-bottom {
+  padding-top: 10px;
+  border-top: 1px solid @gray-lighter;
+}
