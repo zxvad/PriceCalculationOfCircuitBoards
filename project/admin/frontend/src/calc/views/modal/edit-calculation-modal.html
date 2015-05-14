@@ -1,0 +1,17 @@
+<form class="form-horizontal clearfix" role="form" name="form">
+    <h4 class="modal-title">Изменение названия расчета</h4>
+    <div class="control-group">
+        <label class="control-label" for="title">Название</label>
+        <div class="controls">
+            <input type="text" id="title" name="title" class="form-control"
+                   ng-model="calc.title" placeholder="Введите название" server-error/>
+            <span class="errors" ng-show="form.title.$dirty && form.title.$invalid">
+                <span ng-show="form.title.$error.server">{{errors.title}}</span>
+            </span>
+        </div>
+    </div>
+    <div class="submit-btns">
+        <button type="submit" ng-click="saveCalc()" class="btn btn-primary">Сохранить</button>
+        <button class="btn btn-default" ng-click="cancel()">Отмена</button>
+    </div>
+</form>

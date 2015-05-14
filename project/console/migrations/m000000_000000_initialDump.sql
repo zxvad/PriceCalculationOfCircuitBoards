@@ -1,3 +1,12 @@
+DROP TABLE IF EXISTS `calculation`;
+CREATE TABLE `calculation` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`title` VARCHAR(255) NOT NULL,
+	PRIMARY KEY (`id`)
+)
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB;
+
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
@@ -13,6 +22,27 @@ CREATE TABLE `user` (
 COLLATE='utf8_general_ci'
 ENGINE=InnoDB;
 
+DROP TABLE IF EXISTS `input_param`;
+CREATE TABLE `input_param` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`formula_id` INT(11) NOT NULL,
+	`type` enum('input', 'select') default NULL,
+	`value` text,
+	`added_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (`id`)
+)
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS `output_param`;
+CREATE TABLE `output_param` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`formula_id` INT(11) NOT NULL,
+	`added_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (`id`)
+)
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB;
 
 DROP TABLE IF EXISTS `formula`;
 CREATE TABLE `formula` (

@@ -3,14 +3,14 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <base href="/">
+    <base href="/admin/">
     <meta charset="utf-8">
     <meta name="fragment" content="!"/>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <title>Расчет стоимости печатных плат</title>
+    <title>Автоматизация вычисления показателей дял технико-экономического планирования</title>
     <link rel="stylesheet" href="dist/css/built.min.css" type="text/css" >
     <link rel="stylesheet" href="vendor/ng-table/dist/ng-table.css">
 </head>
@@ -22,27 +22,40 @@
                 <div class="dropdown pull-right">
                     <ul class="list-inline navbar-nooffset profile-nav">
                         <li ng-hide="getLogged()">
-                        <a href="/login" translate>Войти</a>
+                        <a href="login" style="color:white">Войти</a>
                     </li>
                         <li ng-show="getLogged()">
-                            <a href="#" ng-click="logOut()" translate>Выйти</a>
+                            <a href="#" ng-click="logOut()" style="color:white">Выйти</a>
                         </li>
                         <li ng-show="getLogged()">
-                            <a href="#" ng-click="logOut()" translate>Помощь</a>
+                            <a href="#" ng-click="logOut()" style="color:white">Помощь</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
         <div ng-controller="NavigationController as nav">
-            <div class="navbar navbar-default subnav" role="navigation">
+            <div class="navbar navbar-nooffset navbar-main" role="navigation">
                 <div class="container">
                     <div ng-model="navigationItems.activePanel">
-                        <ul class="nav bs-collapse-target navbar-nav" if-has-access="{{item.accessLevel}}"
+                        <ul class="nav navbar-nav navbar-header"
                             ng-repeat="item in navigationItems">
-                            <li style="padding:10px; display:block;" ng-show="getLogged()"
+                            <li style="padding:10px; display:block;"  ng-click="setActivePanel(item.activePanel)"  class="main-nav-item"
                                 ng-class="menuClassPanel({{item.activePanel}})">
-                                <a href="{{item.href}}" >{{item.title}}</a>
+                                <a href="{{item.href}}" class="main-nav-link">{{item.title}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="navbar navbar-default navbar-collapse subnav" role="navigation" bs-navbar ng-hide="navigationItems.activePanel == 0">
+                <div class="container">
+                    <div ng-model="navigationItems.activePanel" bs-collapse>
+                        <ul class="nav bs-collapse-target navbar-nav" bs-collapse-target
+                            ng-repeat="item in navigationItems">
+                            <li ng-repeat="subitem in item.items"
+                                ng-class="menuClassSubPanel('{{subitem.href}}')">
+                                <a href="{{subitem.href}}">{{subitem.title}}</a>
                             </li>
                         </ul>
 
@@ -52,7 +65,6 @@
             </div>
         </div>
     </div>
-
     <div ng-view autoscroll="">
     </div>
 </div>

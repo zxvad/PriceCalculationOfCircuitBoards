@@ -47,6 +47,7 @@ return [
                     'prefix' => 'admin/api',
                     'controller' => [
                         'v1/formula',
+                        'v1/calculation',
                     ]
                 ],
                 'OPTIONS admin/api/v1/site/login' => 'v1/site/login',

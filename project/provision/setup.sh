@@ -19,13 +19,12 @@ is_installed() {
 
 sudo DEBIAN_FRONTEND=noninteractive apt-get update > /dev/null
 
-
 # mc, git, curl
-if is_installed mc git curl imagemagick; then
-  echo "++++++++++Mc, git, curl and imagemagick are already installed++++++++++"
+if is_installed mc git curl; then
+  echo "++++++++++Mc, git, curl  are already installed++++++++++"
 else
-  echo "----------Installing utilities (mc, git, curl, imagemagick)----------"
-  sudo DEBIAN_FRONTEND=noninteractive apt-get -y install mc git curl imagemagick > /dev/null
+  echo "----------Installing utilities (mc, git, curl)----------"
+  sudo DEBIAN_FRONTEND=noninteractive apt-get -y install mc git curl > /dev/null
 fi
 
 # MySQL
@@ -116,7 +115,6 @@ echo "----------Installing and running composer----------"
 cd $APP_PATH
 php -r "readfile('https://getcomposer.org/installer');" | php
 php composer.phar install --no-progress
-php composer.phar update --no-progress
 
 # bower packages
 echo "----------Installing and running bower, npm, grunt----------"
@@ -127,8 +125,7 @@ cd $APP_PATH/admin/frontend
 # --no-bin-links is required for windows,
 # because creating symlinks to binaries will cause errors on Windows
 npm install --no-bin-links
-bower install --config.interactive=false -allow
-bower update --config.interactive=false
+bower install --config.interactive=false
 grunt built
 
 # Init web app

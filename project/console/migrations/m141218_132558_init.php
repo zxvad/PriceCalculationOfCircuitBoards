@@ -23,6 +23,10 @@ class m141218_132558_init extends Migration
             SET AUTOCOMMIT=0;
 
             DROP TABLE IF EXISTS `user`;
+            DROP TABLE IF EXISTS `formula`;
+            DROP TABLE IF EXISTS `calculation`;
+            DROP TABLE IF EXISTS `input_param`;
+            DROP TABLE IF EXISTS `output_param`;
 
 		    COMMIT;
             SET AUTOCOMMIT=1;

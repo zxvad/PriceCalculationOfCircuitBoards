@@ -1,0 +1,29 @@
+<div class="clearfix">
+    <div class="col-xs-6">
+    </div>
+</div>
+<div class="container" if-has-access="ROLE_ADMIN">
+    <div class="btns-wrap">
+        <button class="btn btn-primary" ng-click="createCalculation()" translate>Новый расчет</button>
+        <button ng-click="toggleFilter(tableParams)" class="btn btn-default">Скрыть фильтры</button>
+    </div>
+
+    <div class="panel-body">
+        <table ng-table="tableParams" class="table table-colored-header" show-filter="true" template-pagination="ng-table/pager-custom.html">
+            <tr ng-repeat="calc in $data">
+                <td data-title="'id'" sortable="'id'"
+                    filter="{'calc': 'text'}">{{calc.id}}
+                </td>
+                <td data-title="'Название'" sortable="'title'"
+                    filter="{'title': 'text'}">{{calc.title}}
+                </td>
+                <td class="text-right">
+                    <a class="btn btn-primary " role="button" href="#"
+                       ng-click="editCalculation(calc.id)">Редактировать</a>
+                    <a class="btn btn-primary "
+                       role="button" href="#" ng-click="deleteCalculation(calc.id)">Удалить</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

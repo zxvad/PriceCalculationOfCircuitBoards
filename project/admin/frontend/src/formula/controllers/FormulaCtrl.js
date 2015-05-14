@@ -54,16 +54,12 @@ app
                 resolve: {
                     id: function () {
                         return id;
-                    },
-                    path: function () {
-                        return 'v1/notes';
                     }
                 }
             });
             modalInstance.result.then(function(data) {
                 if (data) {
                     $scope.tableParams.reload();
-                    $scope.tableParams.page(1);
                 }
             });
         };

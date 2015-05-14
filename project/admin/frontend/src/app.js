@@ -25,15 +25,19 @@ app.config(['$locationProvider', '$routeProvider', '$httpProvider', '$collapsePr
             templateUrl: modulesPath + '/site/views/index.html',
             controller: 'SiteAuthController'
         })
+        .when('/calculations', {
+            templateUrl: modulesPath + '/calc/views/index.html',
+            controller: 'CalculationIndexController'
+        })
         .when ('/login', {
             templateUrl: modulesPath + '/site/views/login.html',
             controller: 'SiteAuthController'
         })
-        .when ('/calculation/make', {
+        .when ('/calculation/:calculation_id', {
             templateUrl: modulesPath + '/calc/views/make.html',
             controller: 'CalculationMakeController'
         })
-        .when ('/formulas', {
+        .when ('/calculation/:calculation_id/formulas', {
             templateUrl: modulesPath + '/formula/views/index.html',
             controller: 'FormulaIndexController'
         })
