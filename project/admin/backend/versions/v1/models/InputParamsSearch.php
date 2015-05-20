@@ -6,12 +6,13 @@ use yii\data\ActiveDataProvider;
 use yii\data\Sort;
 use yii\data\Pagination;
 
-class CalculationSearch extends Calculation
+class InputParamsSearch extends InputParams
 {
+    public $calculation_id;
     public function rules()
     {
         return [
-            [['id', 'title'], 'safe'],
+            [['id', 'type', 'value', 'calculation_id'], 'safe'],
         ];
 
     }
@@ -25,12 +26,15 @@ class CalculationSearch extends Calculation
      */
     public function search($params)
     {
-        $query = CalculationSearch::find();
+        $query = InputParamsSearch::find();
 
         $sort = new Sort([
             'attributes' => [
                 'id',
-                'title',
+                'formula_id',
+                'type',
+                'value',
+                'added_on'
             ],
         ]);
 
@@ -51,8 +55,10 @@ class CalculationSearch extends Calculation
         }
         $this->load(['CalculationSearch'=>$params]);
 
-        $query->andFilterWhere(['like', 'title',  $this->title]);
-
+        $query->andFilterWhere(['like', 'title',  $this->value]);
+        $query->andFilterWhere(['like', 'title',  $this->type]);
+        $query->andFilterWhere(['=', 'formula.calculation_id',  \Yii::$app->getRequest()->getQueryParam('calculation_id')]);
+        $query->joinWith(['formula']);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'sort'  => $sort,

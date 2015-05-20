@@ -1,10 +1,49 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+<form class="form-horizontal clearfix" role="form" name="form">
+    <h4 class="modal-title">Изменение формулы</h4>
+    <div class="control-group">
+        <label class="control-label" for="type">Тип</label>
+        <div class="controls">
+            <select ng-model="formula.type" id="type" name="type" class="form-control" placeholder="Выберите тип">
+                <option value="formula">Формула</option>
+                <option value="constant">Константа</option>
+            </select>
+            <span class="errors" ng-show="form.type.$dirty && form.type.$invalid">
+                <span ng-show="form.type.$error.server">{{errors.type}}</span>
+            </span>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="variable" translate>Имя переменной</label>
+        <input type="text" id="variable" name="variable" class="form-control"
+               ng-model="formula.variable" placeholder="Введите имя переменной"
+               server-error/>
+        <span class="errors" ng-show="form.variable.$dirty && form.variable.$invalid">
+            <span ng-show="form.variable.$error.server">{{errors.variable}}</span>
+        </span>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="title" translate>Описание</label>
+        <input type="text" id="title" name="title" class="form-control"
+               ng-model="formula.title" placeholder="Введите описание"
+               server-error/>
+        <span class="errors" ng-show="form.title.$dirty && form.title.$invalid">
+            <span ng-show="form.title.$error.server">{{errors.title}}</span>
+        </span>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="expression">Выражение</label>
+        <div class="controls">
+            <textarea name="expression" id="expression" class="form-control" ng-trim="true" placeholder="Введите выражение"
+                      ng-model="formula.expression" server-error>
+            </textarea>
+            <span class="errors" ng-show="form.expression.$dirty && form.expression.$invalid">
+                <span ng-show="form.expression.$error.server">{{errors.expression}}</span>
+            </span>
+        </div>
+    </div>
 
-</body>
-</html>
+    <div class="submit-btns">
+        <button type="submit" ng-click="saveFormula()" class="btn btn-primary" translate>Сохранить</button>
+        <button class="btn btn-default" ng-click="cancel()" translate>Отмена</button>
+    </div>
+</form>

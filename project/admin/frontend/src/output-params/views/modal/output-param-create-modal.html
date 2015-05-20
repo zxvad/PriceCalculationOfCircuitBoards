@@ -1,0 +1,26 @@
+<form class="form-horizontal clearfix" role="form" name="form">
+    <h4 class="modal-title">Добавление выходного параметра</h4>
+    <div class="control-group">
+        <label class="control-label" for="variable" translate>Имя переменной</label>
+        <input type="text" id="variable" name="variable" class="form-control"
+               ng-model="param.variable" placeholder="Введите имя переменной"
+               server-error/>
+        <span class="errors" ng-show="form.variable.$dirty && form.variable.$invalid">
+            <span ng-show="form.variable.$error.server">{{errors.variable}}</span>
+        </span>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="title" translate>Описание</label>
+        <input type="text" id="title" name="title" class="form-control"
+               ng-model="param.title" placeholder="Введите описание"
+               server-error/>
+        <span class="errors" ng-show="form.title.$dirty && form.title.$invalid">
+            <span ng-show="form.title.$error.server">{{errors.title}}</span>
+        </span>
+    </div>
+
+    <div class="submit-btns">
+        <button type="submit" ng-click="saveParam()" class="btn btn-primary" translate>Сохранить</button>
+        <button class="btn btn-default" ng-click="cancel()" translate>Отмена</button>
+    </div>
+</form>

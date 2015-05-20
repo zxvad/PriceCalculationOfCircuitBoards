@@ -41,6 +41,14 @@ app.config(['$locationProvider', '$routeProvider', '$httpProvider', '$collapsePr
             templateUrl: modulesPath + '/formula/views/index.html',
             controller: 'FormulaIndexController'
         })
+        .when ('/calculation/:calculation_id/input-params', {
+            templateUrl: modulesPath + '/input-params/views/index.html',
+            controller: 'InputParamsIndexController'
+        })
+        .when ('/calculation/:calculation_id/output-params', {
+            templateUrl: modulesPath + '/output-params/views/index.html',
+            controller: 'OutputParamsIndexController'
+        })
         .when ('/404', {
             templateUrl: modulesPath + '/site/views/errors/404.html',
             name: '404'

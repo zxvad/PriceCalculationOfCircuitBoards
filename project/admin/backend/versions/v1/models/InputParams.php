@@ -13,32 +13,24 @@ use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
 
-class Formula extends ActiveRecord
-
+class InputParams extends ActiveRecord
 {
-    const FORMULA_TYPE = 'formula';
-    const CALC_TYPE = 'calc';
-    const CONSTANT_TYPE = 'constant';
-    const INPUT_TYPE = 'input';
-    const OUTPUT_TYPE = 'output';
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return '{{%formula}}';
+        return '{{%input_param}}';
     }
 
     public function fields()
     {
         return [
             'id',
+            'formula_id',
             'type',
-            'variable',
-            'title',
-            'expression',
+            'value',
             'added_on',
-            'calculation_id',
         ];
     }
 
@@ -49,15 +41,10 @@ class Formula extends ActiveRecord
     public function rules()
     {
         return [
-            ['added_on', 'safe'],
-            ['type', 'in', 'range' => [self::FORMULA_TYPE, self::CONSTANT_TYPE, self::INPUT_TYPE, self::OUTPUT_TYPE, self::CALC_TYPE]],
-            [['title', 'variable', 'type', 'calculation_id'], 'required'],
-            ['expression', 'required', 'when' => function($model) {
-                return $model->type != self::INPUT_TYPE;
-            }],
-            ['variable', 'unique'],
-            ['expression', 'string', 'max' => 500],
-            [['calculation_id'], 'exist', 'targetClass' => Calculation::className(), 'targetAttribute' => 'id'],
+            [['formula_id'], 'exist', 'targetClass' => Formula::className(), 'targetAttribute' => 'id'],
+            ['type', 'in', 'range' => ['select', 'input']],
+            ['value', 'string'],
+            [['type', 'formula_id'], 'required']
         ];
     }
 
@@ -69,10 +56,8 @@ class Formula extends ActiveRecord
         return [
             'id',
             'type' => 'Тип',
-            'variable'=> 'Имя переменной',
-            'title' => 'Описание',
-            'expression' => 'Выражение',
-            'added_on' => 'added_on',
+            'value' => 'Значение',
+            'added_on'
         ];
     }
 
@@ -92,7 +77,16 @@ class Formula extends ActiveRecord
                     $date = new \DateTime();
                     return $date->format('Y:m:d H:i:s');
                 }
-            ]
+            ],
         ];
     }
+
+    /**
+    * @return \yii\db\ActiveQuery
+    */
+    public function getFormula()
+    {
+        return $this->hasOne(Formula::className(), ['id' => 'formula_id']);
+    }
+
 }

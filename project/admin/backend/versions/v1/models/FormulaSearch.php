@@ -14,7 +14,7 @@ class FormulaSearch extends Formula
     public function rules()
     {
         return [
-            [['operation', 'type', 'variable', 'title', 'expression', 'tech_proc', 'added_on', 'added_by'], 'safe'],
+            [['type', 'variable', 'title', 'expression', 'added_on', 'added_by', 'calculation_id'], 'safe'],
         ];
 
     }
@@ -28,22 +28,15 @@ class FormulaSearch extends Formula
      */
     public function search($params)
     {
-        $query = FormulaSearch::find();
+        $query = FormulaSearch::find()->andFilterWhere(['in', 'formula.type',['constant', 'formula']]);
 
         $sort = new Sort([
             'attributes' => [
-                'operation',
                 'type',
                 'variable',
                 'title',
                 'expression',
-                'tech_proc',
-                'added_on',
-                'addedBy.name' => [
-                    'asc' => ['concat(user.firstname,\' \',user.lastname)' => SORT_ASC],
-                    'desc' => ['concat(user.firstname,\' \',user.lastname)' => SORT_DESC],
-                    'label' => 'addedBy.name',
-                ]
+                'added_on'
             ],
         ]);
 
@@ -64,16 +57,11 @@ class FormulaSearch extends Formula
         }
         $this->load(['FormulaSearch'=>$params]);
 
-        $query->joinWith(['addedBy' => function($q) {
-            $q->andFilterWhere(['like', 'concat(user.firstname,\' \',user.lastname)',  $this->addedBy_name]);
-        }]);
-
-        $query->andFilterWhere(['=', 'formula.operation',  $this->operation]);
         $query->andFilterWhere(['=', 'formula.type',  $this->type]);
+        $query->andFilterWhere(['=', 'formula.calculation_id',  \Yii::$app->getRequest()->getQueryParam('calculation_id')]);
         $query->andFilterWhere(['like', 'formula.variable',  $this->variable]);
         $query->andFilterWhere(['like', 'formula.title', $this->title]);
         $query->andFilterWhere(['like', 'formula.expression', $this->expression]);
-        $query->andFilterWhere(['=', 'formula.tech_proc', $this->tech_proc]);
 
         //$sql = $query->createCommand()->rawSql;
         //die($sql);

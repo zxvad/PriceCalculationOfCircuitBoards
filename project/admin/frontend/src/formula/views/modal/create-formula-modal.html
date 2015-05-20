@@ -1,24 +1,11 @@
 <form class="form-horizontal clearfix" role="form" name="form">
     <h4 class="modal-title">Добавление формулы</h4>
     <div class="control-group">
-        <label class="control-label" for="tech_proc">Тип</label>
-        <div class="controls">
-            <select ng-model="formula.tech_proc" id="tech_proc" name="tech_proc" class="form-control" placeholder="Выберите технологический процесс">
-                <option value="59">59</option>
-            </select>
-            <span class="errors" ng-show="form.tech_proc.$dirty && form.tech_proc.$invalid">
-                <span ng-show="form.tech_proc.$error.server">{{errors.tech_proc}}</span>
-            </span>
-        </div>
-    </div>
-
-    <div class="control-group">
         <label class="control-label" for="type">Тип</label>
         <div class="controls">
             <select ng-model="formula.type" id="type" name="type" class="form-control" placeholder="Выберите тип">
-                <option value="calc">Формула</option>
-                <option value="formula">Константа</option>
-                <option value="calc">Расчетная значение</option>
+                <option value="formula">Формула</option>
+                <option value="constant">Константа</option>
             </select>
             <span class="errors" ng-show="form.type.$dirty && form.type.$invalid">
                 <span ng-show="form.type.$error.server">{{errors.type}}</span>
@@ -26,16 +13,7 @@
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="operation" translate>Номер операции</label>
-        <input type="text" id="operation" name="operation" class="form-control"
-               ng-model="formula.operation" placeholder="Введите номер операции"
-               maxlength="3" server-error/>
-        <span class="errors" ng-show="form.operation.$dirty && form.operation.$invalid">
-            <span ng-show="form.operation.$error.server">{{errors.operation}}</span>
-        </span>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="variable" translate>Имя пеерменной</label>
+        <label class="control-label" for="variable" translate>Имя переменной</label>
         <input type="text" id="variable" name="variable" class="form-control"
                ng-model="formula.variable" placeholder="Введите имя переменной"
                server-error/>
@@ -52,8 +30,6 @@
             <span ng-show="form.title.$error.server">{{errors.title}}</span>
         </span>
     </div>
-
-
         <div class="control-group">
             <label class="control-label" for="expression">Выражение</label>
             <div class="controls">

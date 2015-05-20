@@ -1,0 +1,48 @@
+<form class="form-horizontal clearfix" role="form" name="form">
+    <h4 class="modal-title">Добавление входного параметра</h4>
+    <div class="control-group">
+        <label class="control-label" for="variable" translate>Имя переменной</label>
+        <input type="text" id="variable" name="variable" class="form-control"
+               ng-model="param.variable" placeholder="Введите имя переменной"
+               server-error/>
+        <span class="errors" ng-show="form.variable.$dirty && form.variable.$invalid">
+            <span ng-show="form.variable.$error.server">{{errors.variable}}</span>
+        </span>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="title" translate>Описание</label>
+        <input type="text" id="title" name="title" class="form-control"
+               ng-model="param.title" placeholder="Введите описание"
+               server-error/>
+        <span class="errors" ng-show="form.title.$dirty && form.title.$invalid">
+            <span ng-show="form.title.$error.server">{{errors.title}}</span>
+        </span>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="type">Тип</label>
+        <div class="controls">
+            <select ng-model="param.type" id="type" name="type" class="form-control" placeholder="Выберите тип">
+                <option value="select">Выпадающий список</option>
+                <option value="input">Текстовое поле</option>
+            </select>
+            <span class="errors" ng-show="form.type.$dirty && form.type.$invalid">
+                <span ng-show="form.type.$error.server">{{errors.type}}</span>
+            </span>
+        </div>
+    </div>
+    <div class="control-group" ng-show="param.type">
+        <label class="control-label" for="value">Значение</label>
+        <div class="controls">
+            <input type="text" id="value" name="value" class="form-control"
+                   ng-model="param.value" placeholder="Введите пары ключ-значение, рязделяя ';'"
+                   server-error/>
+            <span class="errors" ng-show="form.value.$dirty && form.value.$invalid">
+                <span ng-show="form.value.$error.server">{{errors.value}}</span>
+            </span>
+        </div>
+    </div>
+    <div class="submit-btns">
+        <button type="submit" ng-click="saveParam()" class="btn btn-primary" translate>Сохранить</button>
+        <button class="btn btn-default" ng-click="cancel()" translate>Отмена</button>
+    </div>
+</form>

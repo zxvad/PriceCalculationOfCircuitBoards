@@ -11,12 +11,6 @@
     <div class="panel-body">
         <table ng-table="tableParams" class="table table-colored-header" show-filter="true" template-pagination="ng-table/pager-custom.html">
             <tr ng-repeat="formula in $data">
-                <td data-title="'Технический процесс'" sortable="'tech_proc'"
-                    filter="{'tech_proc': 'text'}">{{formula.tech_proc}}
-                </td>
-                <td data-title="'Операция'" sortable="'operation'"
-                    filter="{'operation': 'text'}">{{formula.operation}}
-                </td>
                 <td data-title="'Имя переменной'" sortable="'variable'"
                     filter="{'variable': 'text'}">{{formula.variable}}
                 </td>
@@ -29,13 +23,11 @@
                 <td data-title="'Дата создания'" sortable="'added_on'"
                     filter="{'added_on': 'daterange'}">{{formula.added_on | date}}
                 </td>
-                <td data-title="'Дата создания'" sortable="'addedBy.name'"
-                    filter="{'addedBy_name': 'typeahead'}">{{formula.addedBy.name}}
                 <td class="text-right">
                     <a class="btn btn-primary " role="button" href="#"
                        ng-click="editFormula(formula.id)">Редактировать</a>
                     <a class="btn btn-primary "
-                       role="button" href="#" ng-click="deleteFormula(user.id)">Удалить</a>
+                       role="button" href="#" ng-click="deleteFormula(formula.id)">Удалить</a>
                 </td>
             </tr>
         </table>

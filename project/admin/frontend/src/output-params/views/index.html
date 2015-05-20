@@ -1,0 +1,33 @@
+<div class="clearfix">
+    <div class="col-xs-6">
+    </div>
+</div>
+<div class="container" if-has-access="ROLE_ADMIN">
+    <div class="btns-wrap">
+        <button class="btn btn-primary" ng-click="createParam()" translate>Новый входной параметр</button>
+        <button ng-click="toggleFilter(tableParams)" class="btn btn-default">Скрыть фильтры</button>
+    </div>
+
+    <div class="panel-body">
+        <table ng-table="tableParams" class="table table-colored-header" show-filter="true" template-pagination="ng-table/pager-custom.html">
+            <tr ng-repeat="param in $data">
+                <td data-title="'Имя переменной'" sortable="'variable'"
+                    filter="{'variable': 'text'}">{{param.formula.variable}}
+                </td>
+                <td data-title="'Название'" >{{param.formula.title}}
+                </td>
+                <td data-title="'Выражение'" >{{param.formula.expression}}
+                </td>
+                <td data-title="'Дата создания'" sortable="'added_on'"
+                    filter="{'added_on': 'daterange'}">{{param.added_on | date}}
+                </td>
+                <td class="text-right">
+                    <a class="btn btn-primary " role="button" href="#"
+                       ng-click="editParam(param.id)">Редактировать</a>
+                    <a class="btn btn-primary "
+                       role="button" href="#" ng-click="deleteParam(param.id)">Удалить</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

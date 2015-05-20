@@ -1,11 +1,20 @@
 'use strict';
 app
-    .controller('CalculationMakeController', ['$scope', '$location', '$window', 'ACCESS_LEVELS', 'rest',
-        function ($scope, $location, $window, ACCESS_LEVELS, rest) {
+    .controller('CalculationMakeController', ['$scope', '$location', '$window', 'ACCESS_LEVELS', 'rest', '$routeParams',
+        function ($scope, $location, $window, ACCESS_LEVELS, rest, $routeParams) {
             $scope.calc = {};
             $scope.errors = {};
+            rest.modelTable({calculation_id: $routeParams.calculation_id, expand: 'formula'}, 'v1/inputparams').success(function(data){
+                $scope.inputParams = data;
+            }).error(function(error){
+                console.log(error);
+            });
             $scope.makeCalc = function () {
-                rest.postModel($scope.calc, 'v1/calculation/make').success(function (data) {
+                $scope.params = [];
+                angular.forEach($scope.inputParams, function(row, key) {
+                    $scope.params.push({name: row.formula.variable, value: row.send});
+                });
+                rest.postModel($scope.params, 'v1/calculations/make').success(function (data) {
                     console.log(data);
                 }).error(function (error) {
                     $scope.errors = {};

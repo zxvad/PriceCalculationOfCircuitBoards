@@ -48,6 +48,8 @@ return [
                     'controller' => [
                         'v1/formula',
                         'v1/calculation',
+                        'v1/inputparams',
+                        'v1/outputparams',
                     ]
                 ],
                 'OPTIONS admin/api/v1/site/login' => 'v1/site/login',
