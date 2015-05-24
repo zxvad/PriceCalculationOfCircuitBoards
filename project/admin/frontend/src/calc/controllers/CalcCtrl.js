@@ -14,7 +14,7 @@ app
                 angular.forEach($scope.inputParams, function(row, key) {
                     $scope.params.push({name: row.formula.variable, value: row.send});
                 });
-                rest.postModel($scope.params, 'v1/calculations/make/' + $routeParams.calculation_id).success(function (data) {
+                rest.postModel($scope.params, 'v1/calculations/make').success(function (data) {
                     console.log(data);
                 }).error(function (error) {
                     $scope.errors = {};

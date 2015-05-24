@@ -54,7 +54,7 @@ return [
                 ],
                 'OPTIONS admin/api/v1/site/login' => 'v1/site/login',
                 'POST admin/api/v1/site/login' => 'v1/site/login',
-                'POST admin/api/v1/calculations/make/<id:\d+>' => 'v1/calculation/make'
+                'POST admin/api/v1/calculation/make' => 'v1/calculation/make'
             ],
         ],
     ],

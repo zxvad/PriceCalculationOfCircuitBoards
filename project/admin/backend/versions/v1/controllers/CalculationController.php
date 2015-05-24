@@ -11,7 +11,6 @@ namespace api\versions\v1\controllers;
 use api\versions\v1\models\Calculation;
 use api\versions\v1\models\CalculationForm;
 use api\versions\v1\models\CalculationSearch;
-use api\versions\v1\models\Formula;
 use yii\filters\auth\HttpBearerAuth;
 use yii\rest\ActiveController;
 use yii\filters\auth\QueryParamAuth;
@@ -62,11 +61,16 @@ class CalculationController extends ActiveController
         );
     }
 
-    public function actionMake($id)
+    public function actionMake()
     {
-        $params = \Yii::$app->request->getBodyParams();
-        $formulaModel = new Formula();
-        return $formulaModel->calculate($id);
-
+        $calcForm = new CalculationForm();
+        $params = \Yii::$app->getRequest()->getBodyParams();
+        $calcForm->load($params, '');
+        if ($calcForm->validate()) {
+            return 1;
+        }
+        else {
+            return $calcForm;
+        }
     }
 }
