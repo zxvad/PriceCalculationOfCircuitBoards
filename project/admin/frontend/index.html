@@ -38,9 +38,9 @@
             <div class="navbar navbar-nooffset navbar-main" role="navigation">
                 <div class="container">
                     <div ng-model="navigationItems.activePanel">
-                        <ul class="nav navbar-nav navbar-header"
+                        <ul class="nav navbar-nav"
                             ng-repeat="item in navigationItems">
-                            <li style="padding:10px; display:block;"  ng-click="setActivePanel(item.activePanel)"  class="main-nav-item"
+                            <li style="display:block;"  ng-click="setActivePanel(item.activePanel)"  class="main-nav-item"
                                 ng-class="menuClassPanel({{item.activePanel}})">
                                 <a href="{{item.href}}" class="main-nav-link">{{item.title}}</a>
                             </li>
